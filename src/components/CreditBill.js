@@ -7,7 +7,7 @@ const itemList = [
   "ಚೀನಿಕಾಯಿ","ಬೀಟ್ ರೂಟ್","ಗೆಡ್ಡೆಕೋಸು","ಶುಂಠಿ",
   "ಸುವರ್ಣಗೆಡ್ಡೆ","ಕೊತ್ತಂಬರಿ ಸೊಪ್ಪು","ಹರಿವೆ ಸೊಪ್ಪು","ಬಸಳೆ ಸೊಪ್ಪು",
   "ಕದಳಿ ಬಾಳೆಹಣ್ಣು","ಪಚ್ಚೆ ಬಾಳೆಹಣ್ಣು","ಕೋಳಿ ಮೊಟ್ಟೆ","ಮೊಟ್ಟೆ",
-  "ಸೀಮೆಬದನೆ","ಪಾಲಕ್ ಸೊಪ್ಪು","ನುಗ್ಗೆ","ಕರಿಬೇವು","ಮುಳ್ಳುಸೌತೆ","ಈರುಳ್ಳಿ","ಪಡುವಲಕಾಯಿ"
+  "ಸೀಮೆಬದನೆ","ಪಾಲಕ್ ಸೊಪ್ಪು","ನುಗ್ಗೆ","ಕರಿಬೇವು","ಮುಳ್ಳುಸೌತೆ","ಈರುಳ್ಳಿ","ಪಡುವಲಕಾಯಿ","ಬೆಳ್ಳುಳ್ಳಿ"
 ];
 
 function CreditBill() {
@@ -19,9 +19,6 @@ function CreditBill() {
     amount: ""
   }));
 
-  const [billNo, setBillNo] = useState("");
-  const [date, setDate] = useState("");
-  const [customer, setCustomer] = useState("");
   const [rows, setRows] = useState(initialRows);
 
   const handleChange = (index, field, value) => {
@@ -47,10 +44,12 @@ function CreditBill() {
   };
 
   const handleReset = () => {
-    setBillNo("");
-    setDate("");
-    setCustomer("");
     setRows(initialRows);
+
+    // Clear manual editable fields
+    document.querySelectorAll(".manual-entry").forEach(el => {
+      el.innerText = "";
+    });
   };
 
   return (
@@ -79,38 +78,23 @@ function CreditBill() {
 
       <hr />
 
-      {/* Bill Info */}
+      {/* Bill Info Manual Typing */}
       <div className="bill-info-row">
         <div className="inline-field">
-          <span className="field-label">No.</span>
-          <input
-            type="text"
-            value={billNo}
-            onChange={(e) => setBillNo(e.target.value)}
-            className="straight-box"
-          />
+          <span className="field-label">No. :</span>
+          <span className="manual-entry no-entry" contentEditable></span>
         </div>
 
         <div className="inline-field">
-          <span className="field-label">Date:</span>
-          <input
-            type="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-            className="straight-box"
-          />
+          <span className="field-label">Date :</span>
+          <span className="manual-entry" contentEditable></span>
         </div>
       </div>
 
       {/* To */}
       <div className="to-section">
-        <span className="field-label">To:</span>
-        <input
-          type="text"
-          value={customer}
-          onChange={(e) => setCustomer(e.target.value)}
-          className="straight-box to-box"
-        />
+        <span className="field-label">To :</span>
+        <span className="manual-entry to-entry" contentEditable></span>
       </div>
 
       {/* TABLE */}
