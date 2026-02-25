@@ -163,7 +163,7 @@ input[type="number"]::-webkit-inner-spin-button {
   text-align: right;
   font-weight: bold;
   margin-top: 4px;
-  margin-bottom: 14px;   /* Space between total & signature */
+  margin-bottom: 14px;
   font-size: 13px;
 }
 
@@ -199,22 +199,44 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .reset-btn,
+.save-btn,
 .print-btn {
   padding: 5px 12px;
   border: none;
   cursor: pointer;
   font-weight: bold;
   font-size: 12px;
+  border-radius: 4px;
 }
 
+/* Reset - Red */
 .reset-btn {
   background: #c62828;
   color: white;
 }
 
+.reset-btn:hover {
+  background: #8e0000;
+}
+
+/* Save - Blue */
+.save-btn {
+  background-color: #1976d2;
+  color: white;
+}
+
+.save-btn:hover {
+  background-color: #0d47a1;
+}
+
+/* Print - Green */
 .print-btn {
   background: #2e7d32;
   color: white;
+}
+
+.print-btn:hover {
+  background: #1b5e20;
 }
 
 /* =====================================
@@ -238,13 +260,10 @@ input[type="number"]::-webkit-inner-spin-button {
     width: 85%;
     margin: 15mm auto;
     padding: 8mm;
-
     transform: scale(0.78);
     transform-origin: top center;
-
     box-shadow: none;
     border: 1px solid #000;
-
     page-break-inside: avoid;
   }
 
