@@ -39,10 +39,7 @@ function CreditBill() {
     0
   );
 
-  const handlePrint = () => {
-    window.print();
-  };
-
+  // RESET
   const handleReset = () => {
     setRows(initialRows);
     document.querySelectorAll(".manual-entry").forEach(el => {
@@ -50,15 +47,14 @@ function CreditBill() {
     });
   };
 
-  // ✅ SAVE BUTTON FUNCTION
+  // SAVE AS PDF (opens print → choose Save as PDF)
   const handleSave = () => {
-    const billData = {
-      rows,
-      totalAmount
-    };
+    window.print();
+  };
 
-    localStorage.setItem("creditBillData", JSON.stringify(billData));
-    alert("Bill Saved Successfully ✅");
+  // PRINT
+  const handlePrint = () => {
+    window.print();
   };
 
   return (
@@ -81,13 +77,13 @@ function CreditBill() {
 
         <div className="header-right">
           <p><b>Ph.: 0824-2495008</b></p>
-          <p>Ph No: <span className="phone-bold">2275008</span></p>
+          
         </div>
       </div>
 
       <hr />
 
-      {/* BILL INFO */}
+      {/* Bill Info */}
       <div className="bill-info-row">
         <div className="inline-field">
           <span className="field-label">No. :</span>
@@ -157,9 +153,8 @@ function CreditBill() {
         <div className="signature-right">ಸರಬರಾಜುದಾರರ ಸಹಿ</div>
       </div>
 
-      {/* BUTTONS (Reset → Save → Print) */}
-      <div className="button-row">
-
+      {/* BUTTONS (Order: Reset → Save → Print) */}
+      <div className="button-row no-print">
         <button className="reset-btn" onClick={handleReset}>
           🔄 Reset
         </button>
@@ -171,7 +166,6 @@ function CreditBill() {
         <button className="print-btn" onClick={handlePrint}>
           🖨 Print
         </button>
-
       </div>
 
     </div>

@@ -1,24 +1,29 @@
 /* =====================================
-   COMPACT INVOICE DESIGN (FINAL BALANCED)
+   FULL PAGE LIGHT GREEN DESIGN
 ===================================== */
 
-body {
+html, body {
   margin: 0;
   padding: 0;
-  background: #e8f5e9;
+  background-color: #e8f5e9;
+  min-height: 100vh;
   font-family: Arial, sans-serif;
   font-size: 14px;
 }
 
+/* =====================================
+   MAIN BILL CONTAINER
+===================================== */
+
 .bill-container {
   width: 80%;
   max-width: 850px;
-  margin: 15px auto;
-  background: #ffffff;
+  margin: 20px auto;
+  background: #f1f8f4;
   padding: 12px;
   box-sizing: border-box;
   border: 2px solid #2e7d32;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
 }
 
 /* =====================================
@@ -100,13 +105,14 @@ body {
 }
 
 /* =====================================
-   TABLE (HEIGHT OPTIMIZED)
+   TABLE - LIGHT GREEN STYLE
 ===================================== */
 
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 5px;
+  background-color: #f1f8f4;
 }
 
 th, td {
@@ -116,8 +122,8 @@ th, td {
 }
 
 th {
-  background: #f1f1f1;
-  color: #2e7d32;
+  background-color: #c8e6c9;
+  color: #1b5e20;
   font-weight: bold;
 }
 
@@ -126,7 +132,17 @@ td {
   height: 19px;
 }
 
-/* Column Width */
+/* Alternate rows */
+
+tbody tr:nth-child(even) {
+  background-color: #e8f5e9;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #f1f8f4;
+}
+
+/* Column widths */
 
 th:nth-child(1), td:nth-child(1) { width: 5%; }
 
@@ -141,12 +157,20 @@ th:nth-child(3), td:nth-child(3) { width: 20%; }
 th:nth-child(4), td:nth-child(4) { width: 20%; }
 th:nth-child(5), td:nth-child(5) { width: 20%; }
 
+/* Quantity & Rate green */
+
+td:nth-child(3),
+td:nth-child(4) {
+  background-color: #e8f5e9;
+}
+
 input[type="number"] {
   width: 40px;
   font-size: 11px;
   border: none;
   outline: none;
   text-align: center;
+  background-color: #e8f5e9;
 }
 
 input[type="number"]::-webkit-outer-spin-button,
@@ -156,14 +180,14 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 /* =====================================
-   TOTAL (SPACE ADDED BELOW)
+   TOTAL (SPACE BEFORE SIGNATURE)
 ===================================== */
 
 .bottom-total {
   text-align: right;
   font-weight: bold;
-  margin-top: 4px;
-  margin-bottom: 14px;
+  margin-top: 6px;
+  margin-bottom: 45px;   /* space before signature */
   font-size: 13px;
 }
 
@@ -179,10 +203,10 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .signature-left,
 .signature-right {
-  width: 140px;
+  width: 160px;
   text-align: center;
   border-top: 1px solid #000;
-  padding-top: 3px;
+  padding-top: 5px;
   font-weight: bold;
   font-size: 12px;
 }
@@ -210,6 +234,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 /* Reset - Red */
+
 .reset-btn {
   background: #c62828;
   color: white;
@@ -220,6 +245,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 /* Save - Blue */
+
 .save-btn {
   background-color: #1976d2;
   color: white;
@@ -230,6 +256,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 /* Print - Green */
+
 .print-btn {
   background: #2e7d32;
   color: white;
@@ -240,7 +267,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 /* =====================================
-   3/4 PAGE SINGLE SHEET PRINT (FINAL)
+   3/4 SIZE PRINT - ONE PAGE ONLY
 ===================================== */
 
 @page {
@@ -251,20 +278,27 @@ input[type="number"]::-webkit-inner-spin-button {
 @media print {
 
   html, body {
+    width: 210mm;
+    height: 297mm;
     margin: 0;
     padding: 0;
-    background: white !important;
+    overflow: hidden;        /* prevents blank page */
+    background: #ffffff !important;
   }
 
   .bill-container {
-    width: 85%;
+    width: 150mm;            /* 3/4 width */
     margin: 15mm auto;
-    padding: 8mm;
-    transform: scale(0.78);
+    padding: 6mm;
+
+    transform: scale(0.85);  /* reduce height */
     transform-origin: top center;
+
     box-shadow: none;
     border: 1px solid #000;
-    page-break-inside: avoid;
+
+    page-break-after: avoid;
+    page-break-before: avoid;
   }
 
   .button-row {
